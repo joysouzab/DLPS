@@ -126,7 +126,7 @@
   .form-group textarea { resize: vertical; min-height: 90px; }
   .radio-group { display: flex; gap: 1.5rem; margin-top: 4px; }
   .radio-group label { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; font-weight: 400; color: var(--text); text-transform: none; letter-spacing: 0; cursor: pointer; }
-  .form-divider { grid-column: 1/-1; border: none; border-top: 1px solid #edf0f5; margin: 0.5rem 0; }
+  .form-divider { grid-column: 1/-1; border: none; border-top: 1px solid #edf0f5; margin: 0; padding: 0; height: 1px; }
   .form-section-label { grid-column: 1/-1; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-top: 0.5rem; }
   .form-submit { width: 100%; padding: 14px; background: var(--navy); color: white; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
   .form-submit:hover { background: var(--navy2); }
@@ -159,7 +159,8 @@
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .form-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; gap: 0; }
+    .form-group { margin-bottom: 1rem; }
     .form-group.full { grid-column: 1; }
     .hero h1 { font-size: 2.2rem; }
     .globe-bg { opacity: 0.1; width: 90vw; }

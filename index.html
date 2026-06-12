@@ -409,15 +409,11 @@
       <div class="form-group full">
         <label data-lang="pt">Tipo de operação <span class="req">*</span></label>
         <label data-lang="en">Operation type <span class="req">*</span></label>
-        <select>
-          <option value="" data-lang="pt">Selecione...</option>
-          <option value="" data-lang="en">Select...</option>
-          <option data-lang="pt">Importação</option>
-          <option data-lang="en">Import</option>
-          <option data-lang="pt">Exportação</option>
-          <option data-lang="en">Export</option>
-          <option data-lang="pt">Comercial / Trading (Importação + Exportação)</option>
-          <option data-lang="en">Commercial / Trading (Import + Export)</option>
+        <select id="sel-operacao">
+          <option value="">—</option>
+          <option value="imp" data-pt="Importação" data-en="Import">Importação</option>
+          <option value="exp" data-pt="Exportação" data-en="Export">Exportação</option>
+          <option value="com" data-pt="Comercial / Trading" data-en="Commercial / Trading">Comercial / Trading</option>
         </select>
       </div>
 
@@ -579,19 +575,13 @@
         </div>
         <div class="form-group full">
           <label data-lang="pt">Assunto</label><label data-lang="en">Subject</label>
-          <select>
-            <option data-lang="pt">Despacho Aduaneiro</option>
-            <option data-lang="en">Customs Clearance</option>
-            <option data-lang="pt">Assessoria Aduaneira</option>
-            <option data-lang="en">Customs Advisory</option>
-            <option data-lang="pt">Operações Atípicas / Drawback</option>
-            <option data-lang="en">Special Operations / Drawback</option>
-            <option data-lang="pt">Prospecção no Exterior</option>
-            <option data-lang="en">International Business Development</option>
-            <option data-lang="pt">Siscoserv</option>
-            <option data-lang="en">Siscoserv</option>
-            <option data-lang="pt">Outro assunto</option>
-            <option data-lang="en">Other</option>
+          <select id="sel-assunto">
+            <option value="despacho"   data-pt="Despacho Aduaneiro"           data-en="Customs Clearance">Despacho Aduaneiro</option>
+            <option value="assessoria" data-pt="Assessoria Aduaneira"          data-en="Customs Advisory">Assessoria Aduaneira</option>
+            <option value="atipica"    data-pt="Operações Atípicas / Drawback" data-en="Special Operations / Drawback">Operações Atípicas / Drawback</option>
+            <option value="prospeccao" data-pt="Prospecção no Exterior"        data-en="International Business Development">Prospecção no Exterior</option>
+            <option value="siscoserv"  data-pt="Siscoserv"                     data-en="Siscoserv">Siscoserv</option>
+            <option value="outro"      data-pt="Outro assunto"                 data-en="Other">Outro assunto</option>
           </select>
         </div>
         <div class="form-group full">
@@ -621,6 +611,10 @@
     document.body.className = lang;
     document.querySelectorAll('.lang-toggle button').forEach((btn, i) => {
       btn.classList.toggle('active', (i === 0 && lang === 'pt') || (i === 1 && lang === 'en'));
+    });
+    // translate select options
+    document.querySelectorAll('select option[data-pt]').forEach(opt => {
+      opt.textContent = opt.getAttribute('data-' + lang) || opt.getAttribute('data-pt');
     });
   }
 

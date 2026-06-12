@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --navy:   #0B1F3A;
     --navy2:  #132B52;
@@ -21,487 +20,159 @@
     --text:   #1A2840;
     --radius: 4px;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background: var(--white);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5vw;
-    height: 64px;
-    background: rgba(11, 31, 58, 0.97);
+    padding: 0 5vw; height: 64px;
+    background: rgba(11,31,58,0.97);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(200,150,12,0.2);
   }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--white);
-    letter-spacing: 0.04em;
-  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); letter-spacing: 0.04em; }
   .nav-logo span { color: var(--gold); }
-
-  .nav-links {
-    display: flex; align-items: center; gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold-lt); }
+  .lang-toggle { display: flex; border: 1px solid var(--gold); border-radius: 3px; overflow: hidden; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; }
+  .lang-toggle button { padding: 4px 10px; background: transparent; color: var(--gold); border: none; cursor: pointer; transition: background 0.15s, color 0.15s; }
+  .lang-toggle button.active { background: var(--gold); color: var(--navy); }
 
-  /* Language toggle */
-  .lang-toggle {
-    display: flex; gap: 0;
-    border: 1px solid var(--gold);
-    border-radius: 3px;
-    overflow: hidden;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-  }
-  .lang-toggle button {
-    padding: 4px 10px;
-    background: transparent;
-    color: var(--gold);
-    border: none;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-  }
-  .lang-toggle button.active {
-    background: var(--gold);
-    color: var(--navy);
-  }
-
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     min-height: 100vh;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #1a3a60 100%);
-    display: flex; align-items: center;
-    padding: 0 5vw;
-    position: relative;
-    overflow: hidden;
+    display: flex; align-items: center; padding: 0 5vw;
+    position: relative; overflow: hidden;
   }
-
-  /* animated globe background */
-  .globe-bg {
-    position: absolute; right: 3vw; top: 50%;
-    transform: translateY(-50%);
-    width: min(52vw, 600px);
-    opacity: 0.18;
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative; z-index: 2;
-    max-width: 680px;
-  }
-
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-  .hero-eyebrow::before {
-    content: ''; display: block;
-    width: 32px; height: 1px; background: var(--gold);
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 em {
-    color: var(--gold-lt);
-    font-style: normal;
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.7;
-    max-width: 500px;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
-
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
-  .btn-primary {
-    padding: 14px 32px;
-    background: var(--gold);
-    color: var(--navy);
-    font-weight: 700; font-size: 0.9rem;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    border: none; border-radius: var(--radius);
-    cursor: pointer; text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block;
-  }
+  .globe-bg { position: absolute; right: 3vw; top: 50%; transform: translateY(-50%); width: min(52vw, 600px); opacity: 0.18; pointer-events: none; }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 1.5rem; }
+  .hero h1 em { color: var(--gold-lt); font-style: normal; }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.72); line-height: 1.7; max-width: 500px; margin-bottom: 2.5rem; font-weight: 300; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { padding: 14px 32px; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
   .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+  .btn-ghost { padding: 14px 32px; background: transparent; color: var(--white); font-weight: 500; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.35); border-radius: var(--radius); cursor: pointer; text-decoration: none; transition: border-color 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--white); }
 
-  .btn-ghost {
-    padding: 14px 32px;
-    background: transparent;
-    color: var(--white);
-    font-weight: 500; font-size: 0.9rem;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: var(--radius);
-    cursor: pointer; text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-    display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--white); color: var(--white); }
-
-  /* scroll cue */
-  .scroll-cue {
-    position: absolute; bottom: 2rem; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
-  }
-  .scroll-cue .arrow {
-    width: 1px; height: 36px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-    animation: scrollPulse 2s infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
-  }
-
-  /* ── STATS BAR ── */
-  .stats-bar {
-    background: var(--gold);
-    padding: 1.5rem 5vw;
-    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem;
-  }
+  /* STATS BAR */
+  .stats-bar { background: var(--gold); padding: 1.5rem 5vw; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem; }
   .stat-item { text-align: center; }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; font-weight: 700;
-    color: var(--navy);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--navy2);
-    margin-top: 4px;
-  }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--navy); line-height: 1; }
+  .stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy2); margin-top: 4px; }
 
-  /* ── SECTIONS ── */
+  /* SECTIONS */
   section { padding: 6rem 5vw; }
+  .section-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+  .section-eyebrow::after { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 1.2rem; }
+  .section-body { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 560px; }
 
-  .section-eyebrow {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--gold);
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 1rem;
-  }
-  .section-eyebrow::after {
-    content: ''; display: block;
-    width: 32px; height: 1px; background: var(--gold);
-  }
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: start; }
+  .about-card { background: var(--navy); border-radius: 6px; padding: 2.5rem; color: white; position: relative; overflow: hidden; }
+  .about-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; border: 40px solid rgba(200,150,12,0.12); }
+  .about-card-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .about-card-quote { font-family: 'Playfair Display', serif; font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 1.8rem; font-style: italic; }
+  .dlps-acro { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.8rem; }
+  .dlps-acro-item { display: flex; align-items: baseline; gap: 0.5rem; }
+  .dlps-acro-letter { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold-lt); min-width: 24px; }
+  .dlps-acro-word { font-size: 0.9rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+  .about-ports { display: flex; gap: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
+  .about-port { display: flex; flex-direction: column; }
+  .about-port-code { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold-lt); }
+  .about-port-lbl { font-size: 0.7rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.07em; }
 
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 700; color: var(--navy);
-    line-height: 1.2; margin-bottom: 1.2rem;
-  }
-
-  .section-body {
-    font-size: 1rem; color: var(--muted);
-    line-height: 1.75; max-width: 560px;
-  }
-
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5vw; align-items: center;
-  }
-
-  .about-visual {
-    position: relative;
-  }
-  .about-card {
-    background: var(--navy);
-    border-radius: 6px;
-    padding: 3rem;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-  .about-card::before {
-    content: '';
-    position: absolute; top: -40px; right: -40px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    border: 40px solid rgba(200,150,12,0.15);
-  }
-  .about-card-label {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
-  }
-  .about-card-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem; line-height: 1.55; color: rgba(255,255,255,0.9);
-  }
-  .about-accent {
-    margin-top: 1.5rem;
-    display: flex; gap: 1.5rem;
-  }
-  .about-accent-item { display: flex; flex-direction: column; }
-  .about-accent-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; font-weight: 700; color: var(--gold-lt);
-  }
-  .about-accent-lbl {
-    font-size: 0.72rem; color: rgba(255,255,255,0.55); text-transform: uppercase;
-    letter-spacing: 0.07em;
-  }
-
-  /* ── SERVICES ── */
+  /* SERVICES */
   .services-bg { background: var(--grey); }
-
-  .services-header {
-    display: flex; justify-content: space-between;
-    align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;
-    margin-bottom: 3.5rem;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .service-card {
-    background: var(--white);
-    border-radius: 6px;
-    padding: 2rem 1.8rem;
-    border: 1px solid #e2e8f0;
-    transition: box-shadow 0.25s, transform 0.2s, border-color 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .service-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-  .service-card:hover {
-    box-shadow: 0 8px 30px rgba(11,31,58,0.1);
-    transform: translateY(-3px);
-    border-color: transparent;
-  }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+  .service-card { background: var(--white); border-radius: 6px; padding: 2rem 1.8rem; border: 1px solid #e2e8f0; transition: box-shadow 0.25s, transform 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .service-card:hover { box-shadow: 0 8px 30px rgba(11,31,58,0.1); transform: translateY(-3px); border-color: transparent; }
   .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { width: 44px; height: 44px; background: rgba(200,150,12,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+  .service-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .service-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .service-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; padding: 3px 8px; background: rgba(200,150,12,0.1); color: var(--gold); border-radius: 3px; }
 
-  .service-icon {
-    width: 44px; height: 44px;
-    background: rgba(200,150,12,0.1);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1.2rem;
-    font-size: 1.2rem;
-  }
-
-  .service-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; font-weight: 600;
-    color: var(--navy); margin-bottom: 0.6rem;
-  }
-  .service-desc {
-    font-size: 0.88rem; color: var(--muted); line-height: 1.6;
-  }
-
-  /* ── PORTS ── */
-  .ports-section {
-    background: var(--navy);
-    color: white;
-  }
+  /* PORTS */
+  .ports-section { background: var(--navy); color: white; }
   .ports-section .section-title { color: white; }
   .ports-section .section-body { color: rgba(255,255,255,0.65); max-width: 100%; }
+  .ports-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .port-card { border: 1px solid rgba(200,150,12,0.3); border-radius: 6px; padding: 1.6rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .port-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(200,150,12,0.1); border-radius: 50%; margin-bottom: 0.4rem; }
+  .port-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--gold-lt); }
+  .port-loc { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.07em; }
 
-  .ports-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem; margin-top: 3rem;
-  }
-
-  .port-card {
-    border: 1px solid rgba(200,150,12,0.3);
-    border-radius: 6px;
-    padding: 1.6rem;
-    display: flex; flex-direction: column; gap: 0.5rem;
-  }
-  .port-icon {
-    width: 40px; height: 40px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(200,150,12,0.1);
-    border-radius: 50%;
-    margin-bottom: 0.8rem;
-  }
-  .port-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; font-weight: 600;
-    color: var(--gold-lt);
-  }
-  .port-loc {
-    font-size: 0.8rem; color: rgba(255,255,255,0.5);
-    text-transform: uppercase; letter-spacing: 0.07em;
-  }
-
-  /* ── CONTACT ── */
-  .contact-section { background: var(--grey); }
-
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5vw; align-items: start; margin-top: 3rem;
-  }
-
-  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .contact-item {
-    display: flex; gap: 1rem; align-items: flex-start;
-  }
-  .contact-ico {
-    width: 40px; height: 40px; flex-shrink: 0;
-    background: var(--navy);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; color: var(--gold);
-  }
-  .contact-item-label {
-    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--muted); margin-bottom: 3px;
-  }
-  .contact-item-val {
-    font-size: 0.95rem; color: var(--navy); font-weight: 500;
-  }
-
-  .contact-form {
-    background: white;
-    border-radius: 8px;
-    padding: 2.5rem;
-    box-shadow: 0 4px 20px rgba(11,31,58,0.07);
-  }
-  .form-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem; color: var(--navy);
-    margin-bottom: 1.5rem;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  /* QUOTE */
+  .quote-section { background: var(--grey); }
+  .quote-form { background: white; border-radius: 8px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(11,31,58,0.07); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
-  .form-group label {
-    font-size: 0.75rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
-  }
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    padding: 10px 14px;
-    border: 1px solid #dde3ec;
-    border-radius: var(--radius);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem; color: var(--text);
-    transition: border-color 0.2s;
-    outline: none;
-    background: white;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    border-color: var(--gold);
-  }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+  .form-group label .req { color: var(--gold); }
+  .form-group input, .form-group textarea, .form-group select { padding: 10px 14px; border: 1px solid #dde3ec; border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text); transition: border-color 0.2s; outline: none; background: white; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
   .form-group textarea { resize: vertical; min-height: 90px; }
-  .form-submit {
-    width: 100%;
-    padding: 14px;
-    background: var(--navy);
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600; font-size: 0.9rem;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    border: none; border-radius: var(--radius);
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+  .radio-group { display: flex; gap: 1.5rem; margin-top: 4px; }
+  .radio-group label { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; font-weight: 400; color: var(--text); text-transform: none; letter-spacing: 0; cursor: pointer; }
+  .form-divider { grid-column: 1/-1; border: none; border-top: 1px solid #edf0f5; margin: 0.5rem 0; }
+  .form-section-label { grid-column: 1/-1; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-top: 0.5rem; }
+  .form-submit { width: 100%; padding: 14px; background: var(--navy); color: white; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
   .form-submit:hover { background: var(--navy2); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.55);
-    padding: 2.5rem 5vw;
-    display: flex; justify-content: space-between;
-    align-items: center; flex-wrap: wrap; gap: 1rem;
-    font-size: 0.8rem;
-  }
-  footer .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; color: white;
-  }
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: start; margin-top: 3rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; text-decoration: none; }
+  .contact-ico { width: 40px; height: 40px; flex-shrink: 0; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .contact-item-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 3px; }
+  .contact-item-val { font-size: 0.95rem; color: var(--navy); font-weight: 500; }
+  .contact-simple-form { background: white; border-radius: 8px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(11,31,58,0.07); }
+  .form-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 1.5rem; }
+
+  /* FOOTER */
+  footer { background: var(--navy); color: rgba(255,255,255,0.55); padding: 2.5rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; }
+  footer .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: white; }
   footer .footer-logo span { color: var(--gold); }
 
-  /* ── LANGUAGE SWITCH ── */
+  /* LANG */
   [data-lang] { display: none; }
   body.pt [data-lang="pt"] { display: revert; }
   body.en [data-lang="en"] { display: revert; }
-  /* for elements that use inline display */
-  body.pt span[data-lang="pt"],
-  body.en span[data-lang="en"] { display: inline; }
-  body.pt div[data-lang="pt"],
-  body.en div[data-lang="en"] { display: block; }
-  body.pt li[data-lang="pt"],
-  body.en li[data-lang="en"] { display: list-item; }
+  body.pt span[data-lang="pt"], body.en span[data-lang="en"] { display: inline; }
+  body.pt div[data-lang="pt"], body.en div[data-lang="en"] { display: block; }
+  body.pt li[data-lang="pt"], body.en li[data-lang="en"] { display: list-item; }
+  body.pt p[data-lang="pt"], body.en p[data-lang="en"] { display: block; }
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
     .hero h1 { font-size: 2.2rem; }
     .globe-bg { opacity: 0.1; width: 90vw; }
+    .quote-tabs { flex-wrap: wrap; }
   }
 
-  /* entry animation */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .hero-content > * {
-    animation: fadeUp 0.7s ease both;
-  }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content > * { animation: fadeUp 0.7s ease both; }
   .hero-eyebrow { animation-delay: 0.1s; }
-  .hero h1      { animation-delay: 0.25s; }
-  .hero-sub     { animation-delay: 0.4s; }
-  .hero-cta     { animation-delay: 0.55s; }
+  .hero h1 { animation-delay: 0.25s; }
+  .hero-sub { animation-delay: 0.4s; }
+  .hero-cta { animation-delay: 0.55s; }
 </style>
 </head>
 <body class="pt">
@@ -513,6 +184,7 @@
     <li><a href="#about"    data-lang="pt">Sobre</a>     <a href="#about"    data-lang="en">About</a></li>
     <li><a href="#services" data-lang="pt">Serviços</a>  <a href="#services" data-lang="en">Services</a></li>
     <li><a href="#ports"    data-lang="pt">Operações</a> <a href="#ports"    data-lang="en">Operations</a></li>
+    <li><a href="#quote"    data-lang="pt">Orçamento</a> <a href="#quote"    data-lang="en">Quote</a></li>
     <li><a href="#contact"  data-lang="pt">Contato</a>   <a href="#contact"  data-lang="en">Contact</a></li>
   </ul>
   <div class="lang-toggle">
@@ -523,16 +195,14 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <!-- animated globe SVG -->
   <svg class="globe-bg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
     <circle cx="250" cy="250" r="220" fill="none" stroke="#C8960C" stroke-width="1"/>
     <ellipse cx="250" cy="250" rx="90" ry="220" fill="none" stroke="#C8960C" stroke-width="0.8"/>
     <ellipse cx="250" cy="250" rx="180" ry="220" fill="none" stroke="#C8960C" stroke-width="0.8"/>
     <line x1="30" y1="250" x2="470" y2="250" stroke="#C8960C" stroke-width="0.8"/>
-    <line x1="250" y1="30"  x2="250" y2="470" stroke="#C8960C" stroke-width="0.8"/>
-    <ellipse cx="250" cy="250" rx="220" ry="60"  fill="none" stroke="#C8960C" stroke-width="0.6"/>
+    <line x1="250" y1="30" x2="250" y2="470" stroke="#C8960C" stroke-width="0.8"/>
+    <ellipse cx="250" cy="250" rx="220" ry="60" fill="none" stroke="#C8960C" stroke-width="0.6"/>
     <ellipse cx="250" cy="250" rx="220" ry="120" fill="none" stroke="#C8960C" stroke-width="0.6"/>
-    <!-- trade route dots -->
     <circle cx="170" cy="210" r="4" fill="#C8960C" opacity="0.9"/>
     <circle cx="300" cy="180" r="3" fill="#E8B832" opacity="0.8"/>
     <circle cx="360" cy="290" r="4" fill="#C8960C" opacity="0.9"/>
@@ -542,40 +212,33 @@
     <path d="M300,180 Q340,240 360,290" fill="none" stroke="#C8960C" stroke-width="1.5" opacity="0.7" stroke-dasharray="4 3"/>
     <path d="M170,210 Q160,260 140,310" fill="none" stroke="#C8960C" stroke-width="1.5" opacity="0.5" stroke-dasharray="4 3"/>
   </svg>
-
   <div class="hero-content">
-    <div class="hero-eyebrow" data-lang="pt">Campinas, SP · Desde 2010</div>
-    <div class="hero-eyebrow" data-lang="en">Campinas, SP · Since 2010</div>
-
+    <div class="hero-eyebrow" data-lang="pt">Campinas, SP · Desde 2007</div>
+    <div class="hero-eyebrow" data-lang="en">Campinas, SP · Since 2007</div>
     <h1 data-lang="pt">Seu negócio<br>sem <em>fronteiras.</em></h1>
     <h1 data-lang="en">Your business<br>without <em>borders.</em></h1>
-
-    <p class="hero-sub" data-lang="pt">
-      Assessoria e despacho aduaneiro completo para importação e exportação.
-      Atuamos em Santos, Guarulhos e Viracopos para levar seus produtos a qualquer lugar do mundo.
-    </p>
-    <p class="hero-sub" data-lang="en">
-      Full customs brokerage and advisory for imports and exports.
-      We operate at Santos, Guarulhos, and Viracopos to take your products anywhere in the world.
-    </p>
-
+    <p class="hero-sub" data-lang="pt">Assessoria e despacho aduaneiro completo para importação e exportação. Mais de 20 anos de experiência conectando empresas brasileiras ao mercado global.</p>
+    <p class="hero-sub" data-lang="en">Full customs brokerage and advisory for imports and exports. Over 20 years of experience connecting Brazilian companies to the global market.</p>
     <div class="hero-cta">
-      <a href="#contact" class="btn-primary" data-lang="pt">Fale conosco</a>
-      <a href="#contact" class="btn-primary" data-lang="en">Get in touch</a>
+      <a href="#quote" class="btn-primary" data-lang="pt">Pedir cotação</a>
+      <a href="#quote" class="btn-primary" data-lang="en">Request a quote</a>
       <a href="#services" class="btn-ghost" data-lang="pt">Ver serviços</a>
       <a href="#services" class="btn-ghost" data-lang="en">Our services</a>
     </div>
   </div>
-
-
 </section>
 
-<!-- STATS BAR -->
+<!-- STATS -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-num">+15</div>
+    <div class="stat-num">+20</div>
     <div class="stat-label" data-lang="pt">Anos de experiência</div>
     <div class="stat-label" data-lang="en">Years of experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2007</div>
+    <div class="stat-label" data-lang="pt">Ano de fundação</div>
+    <div class="stat-label" data-lang="en">Founded</div>
   </div>
   <div class="stat-item">
     <div class="stat-num">3</div>
@@ -587,11 +250,6 @@
     <div class="stat-label" data-lang="pt">Atendimento nacional</div>
     <div class="stat-label" data-lang="en">Nationwide coverage</div>
   </div>
-  <div class="stat-item">
-    <div class="stat-num">∞</div>
-    <div class="stat-label" data-lang="pt">Destinos atendidos</div>
-    <div class="stat-label" data-lang="en">Destinations served</div>
-  </div>
 </div>
 
 <!-- ABOUT -->
@@ -602,43 +260,22 @@
       <div class="section-eyebrow" data-lang="en">About DLPS</div>
       <h2 class="section-title" data-lang="pt">Especialistas em comércio exterior</h2>
       <h2 class="section-title" data-lang="en">Foreign trade specialists</h2>
-      <p class="section-body" data-lang="pt">
-        A DLPS atua há mais de uma década no desembaraço e assessoria aduaneira, conectando empresas brasileiras ao mercado global. Baseados em Campinas, SP, somos parceiros estratégicos no processo de importação, exportação e na prospecção de negócios internacionais.
-      </p>
-      <p class="section-body" data-lang="en">
-        DLPS has been operating for over a decade in customs clearance and advisory services, connecting Brazilian companies to the global market. Based in Campinas, SP, we are strategic partners in the import, export, and international business prospecting process.
-      </p>
+      <p class="section-body" data-lang="pt">Fundada em 2007 por Daniel Felipe Bezerra, a DLPS nasceu da experiência de mais de 20 anos no ramo de comércio exterior, iniciada em grandes companhias nacionais e multinacionais. Baseados em Campinas, SP, atuamos em todo o território nacional com foco em transparência, eficiência e segurança jurídica.</p>
+      <p class="section-body" data-lang="en">Founded in 2007 by Daniel Felipe Bezerra, DLPS was built on over 20 years of foreign trade experience gained at major national and multinational companies. Based in Campinas, SP, we serve the entire country with a focus on transparency, efficiency, and legal compliance.</p>
       <br>
-      <p class="section-body" data-lang="pt">
-        Desenvolvemos projetos especiais com benefícios fiscais como drawback, entreposto aduaneiro, admissão temporária e back to back — sempre com foco na eficiência e segurança jurídica das operações de nossos clientes.
-      </p>
-      <p class="section-body" data-lang="en">
-        We develop special projects with tax benefits such as drawback, bonded warehouse, temporary admission, and back to back — always focused on efficiency and legal security in our clients' operations.
-      </p>
+      <p class="section-body" data-lang="pt">Somos especializados em desembaraço e assessoria aduaneira, projetos especiais com benefícios tributários, prospecção de negócios no exterior e comercialização de produtos importados e exportados.</p>
+      <p class="section-body" data-lang="en">We specialize in customs clearance and advisory, special tax benefit projects, international business prospecting, and the commercialization of imported and exported products.</p>
     </div>
-    <div class="about-visual">
+    <div>
       <div class="about-card">
         <div class="about-card-label" data-lang="pt">Nossa missão</div>
         <div class="about-card-label" data-lang="en">Our mission</div>
-        <div class="about-card-text" data-lang="pt">
-          "Simplificar o comércio exterior para que cada empresa brasileira possa crescer sem limites."
-        </div>
-        <div class="about-card-text" data-lang="en">
-          "Simplifying foreign trade so every Brazilian company can grow without limits."
-        </div>
-        <div class="about-accent">
-          <div class="about-accent-item">
-            <span class="about-accent-num">Santos</span>
-            <span class="about-accent-lbl">Porto</span>
-          </div>
-          <div class="about-accent-item">
-            <span class="about-accent-num">GRU</span>
-            <span class="about-accent-lbl">Guarulhos</span>
-          </div>
-          <div class="about-accent-item">
-            <span class="about-accent-num">VCP</span>
-            <span class="about-accent-lbl">Viracopos</span>
-          </div>
+        <div class="about-card-quote" data-lang="pt">"Simplificar o comércio exterior para que cada empresa brasileira possa crescer sem limites."</div>
+        <div class="about-card-quote" data-lang="en">"Simplifying foreign trade so every Brazilian company can grow without limits."</div>
+        <div class="about-ports">
+          <div class="about-port"><span class="about-port-code">Santos</span><span class="about-port-lbl">Porto</span></div>
+          <div class="about-port"><span class="about-port-code">GRU</span><span class="about-port-lbl">Guarulhos</span></div>
+          <div class="about-port"><span class="about-port-code">VCP</span><span class="about-port-lbl">Viracopos</span></div>
         </div>
       </div>
     </div>
@@ -661,54 +298,64 @@
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
       <div class="service-title" data-lang="pt">Despacho Aduaneiro</div>
       <div class="service-title" data-lang="en">Customs Clearance</div>
-      <p class="service-desc" data-lang="pt">Desembaraço completo de mercadorias na importação e exportação, com agilidade e conformidade fiscal.</p>
-      <p class="service-desc" data-lang="en">Full customs clearance for imports and exports with speed and tax compliance.</p>
+      <p class="service-desc" data-lang="pt">Desembaraço completo de mercadorias na importação e exportação, com análise documental, elaboração de D.I./R.E., acompanhamento do processo e conferência junto às repartições alfandegárias.</p>
+      <p class="service-desc" data-lang="en">Full customs clearance for imports and exports, including document analysis, D.I./R.E. preparation, process monitoring, and inspection at customs offices.</p>
+      <div class="service-tags"><span class="service-tag">Importação</span><span class="service-tag">Exportação</span></div>
     </div>
 
     <div class="service-card">
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-      <div class="service-title" data-lang="pt">Consultoria em Comércio Exterior</div>
-      <div class="service-title" data-lang="en">Foreign Trade Consulting</div>
-      <p class="service-desc" data-lang="pt">Assessoria estratégica para otimizar seus processos e reduzir custos tributários nas operações internacionais.</p>
-      <p class="service-desc" data-lang="en">Strategic advisory to optimize your processes and reduce tax costs in international operations.</p>
+      <div class="service-title" data-lang="pt">Assessoria Aduaneira</div>
+      <div class="service-title" data-lang="en">Customs Advisory</div>
+      <p class="service-desc" data-lang="pt">Pré-análise de operações antes do embarque, gestão do processo door-to-door, cotações de frete internacional, câmbio e seguro, e elaboração de documentos como faturas e certificados de origem.</p>
+      <p class="service-desc" data-lang="en">Pre-shipment analysis, door-to-door process management, international freight quotes, exchange and insurance, and preparation of commercial invoices and certificates of origin.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <div class="service-title" data-lang="pt">Assessoria Aduaneira Atípica</div>
+      <div class="service-title" data-lang="en">Atypical Customs Advisory</div>
+      <p class="service-desc" data-lang="pt">Processos especiais com benefícios fiscais como isenção ou suspensão de tributos. Inclui classificação fiscal, petições administrativas, retificações de DI/RE, importação ficta e habilitação no RADAR.</p>
+      <p class="service-desc" data-lang="en">Special processes with tax benefits such as exemption or suspension of taxes. Includes fiscal classification, administrative petitions, DI/RE rectifications, fictitious import, and RADAR registration.</p>
+      <div class="service-tags"><span class="service-tag">RADAR</span><span class="service-tag">Classificação Fiscal</span></div>
     </div>
 
     <div class="service-card">
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="service-title" data-lang="pt">Drawback</div>
-      <div class="service-title" data-lang="en">Drawback</div>
-      <p class="service-desc" data-lang="pt">Suspensão ou isenção de tributos na importação de insumos destinados à exportação. Maximize sua competitividade.</p>
-      <p class="service-desc" data-lang="en">Suspension or exemption of taxes on imported inputs for export. Maximize your competitiveness.</p>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-      <div class="service-title" data-lang="pt">Entreposto Aduaneiro</div>
-      <div class="service-title" data-lang="en">Bonded Warehouse</div>
-      <p class="service-desc" data-lang="pt">Armazenamento de mercadorias sob suspensão de tributos. Flexibilidade operacional com segurança jurídica.</p>
-      <p class="service-desc" data-lang="en">Storage of goods under tax suspension. Operational flexibility with legal certainty.</p>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <div class="service-title" data-lang="pt">Admissão Temporária</div>
-      <div class="service-title" data-lang="en">Temporary Admission</div>
-      <p class="service-desc" data-lang="pt">Importação com suspensão total ou parcial de tributos para bens que permanecerão temporariamente no país.</p>
-      <p class="service-desc" data-lang="en">Import with total or partial tax suspension for goods that will temporarily remain in the country.</p>
+      <div class="service-title" data-lang="pt">Operações Atípicas</div>
+      <div class="service-title" data-lang="en">Special Operations</div>
+      <p class="service-desc" data-lang="pt">Projetos especiais regulamentados pela Receita Federal com redução de custos tributários:</p>
+      <p class="service-desc" data-lang="en">Special projects regulated by the Federal Revenue with tax cost reduction:</p>
+      <div class="service-tags"><span class="service-tag">Drawback</span><span class="service-tag">Admissão Temporária</span><span class="service-tag">Entreposto</span><span class="service-tag">Back to Back</span><span class="service-tag">Exportação Ficta</span></div>
     </div>
 
     <div class="service-card">
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-      <div class="service-title" data-lang="pt">Back to Back &amp; Trading</div>
-      <div class="service-title" data-lang="en">Back to Back &amp; Trading</div>
-      <p class="service-desc" data-lang="pt">Operações triangulares e comercialização de produtos importados e exportados. Internacionalização dos produtos brasileiros.</p>
-      <p class="service-desc" data-lang="en">Triangular operations and commercialization of imported and exported products. Internationalization of Brazilian products.</p>
+      <div class="service-title" data-lang="pt">Prospecção de Negócios no Exterior</div>
+      <div class="service-title" data-lang="en">International Business Development</div>
+      <p class="service-desc" data-lang="pt">Desenvolvimento de fornecedores e compradores no exterior, com parcerias que atestam a autenticidade das partes. Gestão de pedidos, logística door-to-door e internacionalização de produtos brasileiros.</p>
+      <p class="service-desc" data-lang="en">Development of overseas suppliers and buyers through verified partnerships. Order management, door-to-door logistics, and internationalization of Brazilian products.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="service-title">Siscoserv</div>
+      <p class="service-desc" data-lang="pt">Registro e gestão no Sistema Integrado de Comércio Exterior de Serviços do Governo Federal. Cobrimos os módulos de Aquisição (RAS/RP) e Venda (RVS/RF) de serviços intangíveis e operações que produzam variações no patrimônio.</p>
+      <p class="service-desc" data-lang="en">Registration and management in the Federal Government's Integrated System for Foreign Trade in Services. We cover the Acquisition (RAS/RP) and Sale (RVS/RF) modules for intangible services and operations that produce changes in assets.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="service-title" data-lang="pt">Outros Serviços</div>
+      <div class="service-title" data-lang="en">Additional Services</div>
+      <p class="service-desc" data-lang="pt">Bagagem acompanhada e desacompanhada, projetos especiais para importação/exportação de material usado, e gestão e aprovação de benefício com "ex" tarifário.</p>
+      <p class="service-desc" data-lang="en">Accompanied and unaccompanied baggage, special projects for import/export of used goods, and management and approval of "ex" tariff benefits.</p>
     </div>
 
   </div>
 </section>
 
-<!-- PORTS / OPERATIONS -->
+<!-- PORTS -->
 <section id="ports" class="ports-section">
   <div class="section-eyebrow" style="color:var(--gold)" data-lang="pt">Onde atuamos</div>
   <div class="section-eyebrow" style="color:var(--gold)" data-lang="en">Where we operate</div>
@@ -716,38 +363,25 @@
   <h2 class="section-title" data-lang="en">Operational hubs</h2>
   <p class="section-body" data-lang="pt">Localizados em Campinas/SP, atendemos todo o território nacional e internacional pelos principais portos e aeroportos de carga do Brasil.</p>
   <p class="section-body" data-lang="en">Located in Campinas/SP, we serve the entire national and international territory through Brazil's main cargo ports and airports.</p>
-
   <div class="ports-grid">
     <div class="port-card">
-      <div class="port-icon">
-        <!-- Anchor -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 15H2a10 10 0 0 0 20 0h-3"/><line x1="5" y1="8" x2="19" y2="8"/></svg>
-      </div>
+      <div class="port-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 15H2a10 10 0 0 0 20 0h-3"/><line x1="5" y1="8" x2="19" y2="8"/></svg></div>
       <div class="port-name" data-lang="pt">Porto de Santos</div>
       <div class="port-name" data-lang="en">Port of Santos</div>
       <div class="port-loc">Santos, SP</div>
     </div>
     <div class="port-card">
-      <div class="port-icon">
-        <!-- Plane -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-1-5.5.5L10 6 1.8 4.2A1 1 0 0 0 .9 5l2.4 4.2L8 12 6 16l-2 1 1 2 3-1 1-2 4-2 4.2 2.6A1 1 0 0 0 19 19.1z"/></svg>
-      </div>
+      <div class="port-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-1-5.5.5L10 6 1.8 4.2A1 1 0 0 0 .9 5l2.4 4.2L8 12 6 16l-2 1 1 2 3-1 1-2 4-2 4.2 2.6A1 1 0 0 0 19 19.1z"/></svg></div>
       <div class="port-name">Aeroporto de Guarulhos</div>
       <div class="port-loc">GRU – São Paulo</div>
     </div>
     <div class="port-card">
-      <div class="port-icon">
-        <!-- Plane -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-1-5.5.5L10 6 1.8 4.2A1 1 0 0 0 .9 5l2.4 4.2L8 12 6 16l-2 1 1 2 3-1 1-2 4-2 4.2 2.6A1 1 0 0 0 19 19.1z"/></svg>
-      </div>
+      <div class="port-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-1-5.5.5L10 6 1.8 4.2A1 1 0 0 0 .9 5l2.4 4.2L8 12 6 16l-2 1 1 2 3-1 1-2 4-2 4.2 2.6A1 1 0 0 0 19 19.1z"/></svg></div>
       <div class="port-name">Viracopos</div>
       <div class="port-loc">VCP – Campinas, SP</div>
     </div>
     <div class="port-card">
-      <div class="port-icon">
-        <!-- Globe -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </div>
+      <div class="port-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8960C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
       <div class="port-name" data-lang="pt">Todo o Brasil</div>
       <div class="port-name" data-lang="en">All of Brazil</div>
       <div class="port-loc" data-lang="pt">Atendimento nacional</div>
@@ -756,25 +390,164 @@
   </div>
 </section>
 
+<!-- QUOTE -->
+<section id="quote" class="quote-section">
+  <div class="section-eyebrow" data-lang="pt">Estudo de viabilidade</div>
+  <div class="section-eyebrow" data-lang="en">Feasibility study</div>
+  <h2 class="section-title" data-lang="pt">Solicite uma cotação</h2>
+  <h2 class="section-title" data-lang="en">Request a quote</h2>
+  <p class="section-body" data-lang="pt">Preencha o formulário abaixo e entraremos em contato com uma proposta personalizada para sua operação.</p>
+  <p class="section-body" data-lang="en">Fill in the form below and we'll get back to you with a tailored proposal for your operation.</p>
+
+  <br><br>
+
+  <!-- SINGLE QUOTE FORM -->
+  <div class="quote-form">
+    <div class="form-grid">
+      <!-- Tipo de operação -->
+      <div class="form-group full">
+        <label data-lang="pt">Tipo de operação <span class="req">*</span></label>
+        <label data-lang="en">Operation type <span class="req">*</span></label>
+        <select>
+          <option value="" data-lang="pt">Selecione...</option>
+          <option value="" data-lang="en">Select...</option>
+          <option data-lang="pt">Importação</option>
+          <option data-lang="en">Import</option>
+          <option data-lang="pt">Exportação</option>
+          <option data-lang="en">Export</option>
+          <option data-lang="pt">Comercial / Trading (Importação + Exportação)</option>
+          <option data-lang="en">Commercial / Trading (Import + Export)</option>
+        </select>
+      </div>
+      <hr class="form-divider">
+      <!-- Dados pessoais -->
+      <div class="form-group">
+        <label data-lang="pt">Nome <span class="req">*</span></label>
+        <label data-lang="en">Name <span class="req">*</span></label>
+        <input type="text" data-lang="pt" placeholder="Seu nome completo">
+        <input type="text" data-lang="en" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" placeholder="seu@email.com">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">Telefone <span class="req">*</span></label>
+        <label data-lang="en">Phone <span class="req">*</span></label>
+        <input type="tel" placeholder="(19) 99999-9999">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">Tipo de contato</label>
+        <label data-lang="en">Contact type</label>
+        <div class="radio-group">
+          <label><input type="radio" name="tel-type" value="celular"> <span data-lang="pt">Celular</span><span data-lang="en">Mobile</span></label>
+          <label><input type="radio" name="tel-type" value="fixo"> <span data-lang="pt">Fixo</span><span data-lang="en">Landline</span></label>
+        </div>
+      </div>
+      <hr class="form-divider">
+      <!-- Produto -->
+      <div class="form-group full">
+        <label data-lang="pt">1. Descrição, características e detalhes do produto <span class="req">*</span></label>
+        <label data-lang="en">1. Product description, characteristics and details <span class="req">*</span></label>
+        <textarea data-lang="pt" placeholder="Descreva o produto..."></textarea>
+        <textarea data-lang="en" placeholder="Describe the product..."></textarea>
+      </div>
+      <div class="form-group full">
+        <label data-lang="pt">2. NCM do produto e preço total da mercadoria</label>
+        <label data-lang="en">2. Product NCM code and total merchandise value</label>
+        <input type="text" data-lang="pt" placeholder="Ex: 8471.30.12 — R$ 50.000,00">
+        <input type="text" data-lang="en" placeholder="E.g.: 8471.30.12 — USD 10,000.00">
+      </div>
+      <div class="form-group full">
+        <label data-lang="pt">3. É um container cheio?</label>
+        <label data-lang="en">3. Is it a full container?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="container" value="sim"> <span data-lang="pt">Sim</span><span data-lang="en">Yes</span></label>
+          <label><input type="radio" name="container" value="nao"> <span data-lang="pt">Não</span><span data-lang="en">No</span></label>
+        </div>
+      </div>
+      <!-- Dimensões -->
+      <div class="form-section-label" data-lang="pt">4. Dimensões e peso da carga</div>
+      <div class="form-section-label" data-lang="en">4. Cargo dimensions and weight</div>
+      <div class="form-group">
+        <label data-lang="pt">Altura (m)</label><label data-lang="en">Height (m)</label>
+        <input type="number" step="0.01" placeholder="0.00">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">Largura (m)</label><label data-lang="en">Width (m)</label>
+        <input type="number" step="0.01" placeholder="0.00">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">Comprimento (m)</label><label data-lang="en">Length (m)</label>
+        <input type="number" step="0.01" placeholder="0.00">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">Peso (kg)</label><label data-lang="en">Weight (kg)</label>
+        <input type="number" placeholder="0">
+      </div>
+      <!-- Logística -->
+      <div class="form-group">
+        <label data-lang="pt">5. Porto / aeroporto de origem</label>
+        <label data-lang="en">5. Port / airport of origin</label>
+        <input type="text" data-lang="pt" placeholder="Ex: Viracopos (VCP)">
+        <input type="text" data-lang="en" placeholder="E.g.: Viracopos (VCP)">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">Porto / aeroporto de destino</label>
+        <label data-lang="en">Port / airport of destination</label>
+        <input type="text" data-lang="pt" placeholder="Ex: Rotterdam">
+        <input type="text" data-lang="en" placeholder="E.g.: Rotterdam">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">6. Prazo para a operação</label>
+        <label data-lang="en">6. Operation deadline</label>
+        <input type="text" data-lang="pt" placeholder="Ex: 30 dias, junho/2025">
+        <input type="text" data-lang="en" placeholder="E.g.: 30 days, June 2025">
+      </div>
+      <div class="form-group">
+        <label data-lang="pt">7. Possui RADAR?</label>
+        <label data-lang="en">7. RADAR registration?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="radar" value="sim"> <span data-lang="pt">Sim</span><span data-lang="en">Yes</span></label>
+          <label><input type="radio" name="radar" value="nao"> <span data-lang="pt">Não</span><span data-lang="en">No</span></label>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label data-lang="pt">8. O serviço será realizado para:</label>
+        <label data-lang="en">8. The service will be for:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="tipo-pessoa" value="pf"> <span data-lang="pt">Pessoa Física</span><span data-lang="en">Individual</span></label>
+          <label><input type="radio" name="tipo-pessoa" value="pj"> <span data-lang="pt">Pessoa Jurídica</span><span data-lang="en">Company</span></label>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label data-lang="pt">Observações</label>
+        <label data-lang="en">Additional notes</label>
+        <textarea data-lang="pt" placeholder="Informações adicionais..."></textarea>
+        <textarea data-lang="en" placeholder="Additional information..."></textarea>
+      </div>
+      <div class="form-group full">
+        <button class="form-submit" data-lang="pt">Enviar solicitação</button>
+        <button class="form-submit" data-lang="en">Submit request</button>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- CONTACT -->
-<section id="contact" class="contact-section">
+<section id="contact">
   <div class="section-eyebrow" data-lang="pt">Entre em contato</div>
   <div class="section-eyebrow" data-lang="en">Get in touch</div>
-  <h2 class="section-title" data-lang="pt">Vamos trabalhar juntos</h2>
-  <h2 class="section-title" data-lang="en">Let's work together</h2>
-
+  <h2 class="section-title" data-lang="pt">Fale conosco</h2>
+  <h2 class="section-title" data-lang="en">Talk to us</h2>
   <div class="contact-grid">
     <div class="contact-info">
       <a class="contact-item" href="https://wa.me/5519974032426" target="_blank" style="text-decoration:none;">
         <div class="contact-ico" style="background:#25D366;">
-          <svg width="18" height="18" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.5L4 29l7.75-1.813A11.94 11.94 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.94 9.94 0 0 1-5.125-1.414l-.363-.219-4.094.957.98-3.957-.243-.38A9.944 9.944 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.172 5.5c-.2 0-.523.074-.8.375C11.75 11.176 11 12.1 11 13.793c0 1.692 1.055 3.326 1.203 3.555.149.228 2.05 3.27 5.047 4.457.706.27 1.254.432 1.683.555.707.2 1.35.172 1.859.105.567-.075 1.747-.715 1.994-1.406.248-.691.248-1.285.174-1.41-.074-.12-.273-.194-.572-.34-.298-.147-1.747-.862-2.018-.96-.27-.1-.467-.148-.663.148-.199.298-.767.96-.94 1.158-.174.199-.348.224-.646.075-.298-.149-1.259-.464-2.398-1.48-.886-.79-1.484-1.765-1.658-2.063-.174-.298-.019-.459.13-.607.134-.133.298-.348.447-.522.149-.174.199-.298.298-.497.1-.198.05-.372-.025-.521-.075-.149-.663-1.6-.91-2.19-.24-.575-.482-.497-.663-.506-.172-.008-.372-.01-.571-.01z"/>
-          </svg>
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.5L4 29l7.75-1.813A11.94 11.94 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.94 9.94 0 0 1-5.125-1.414l-.363-.219-4.094.957.98-3.957-.243-.38A9.944 9.944 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.172 5.5c-.2 0-.523.074-.8.375C11.75 11.176 11 12.1 11 13.793c0 1.692 1.055 3.326 1.203 3.555.149.228 2.05 3.27 5.047 4.457.706.27 1.254.432 1.683.555.707.2 1.35.172 1.859.105.567-.075 1.747-.715 1.994-1.406.248-.691.248-1.285.174-1.41-.074-.12-.273-.194-.572-.34-.298-.147-1.747-.862-2.018-.96-.27-.1-.467-.148-.663.148-.199.298-.767.96-.94 1.158-.174.199-.348.224-.646.075-.298-.149-1.259-.464-2.398-1.48-.886-.79-1.484-1.765-1.658-2.063-.174-.298-.019-.459.13-.607.134-.133.298-.348.447-.522.149-.174.199-.298.298-.497.1-.198.05-.372-.025-.521-.075-.149-.663-1.6-.91-2.19-.24-.575-.482-.497-.663-.506-.172-.008-.372-.01-.571-.01z"/></svg>
         </div>
         <div>
-          <div class="contact-item-label" data-lang="pt">WhatsApp</div>
-          <div class="contact-item-label" data-lang="en">WhatsApp</div>
-          <div class="contact-item-val" style="color:var(--navy);">(19) 97403-2426</div>
+          <div class="contact-item-label">WhatsApp</div>
+          <div class="contact-item-val">(19) 97403-2426</div>
           <div style="font-size:0.78rem;color:#6B7A8D;font-weight:500;margin-top:2px;" data-lang="pt">Clique para conversar</div>
           <div style="font-size:0.78rem;color:#6B7A8D;font-weight:500;margin-top:2px;" data-lang="en">Click to chat</div>
         </div>
@@ -787,50 +560,49 @@
         </div>
       </div>
     </div>
-
-    <div class="contact-form">
+    <div class="contact-simple-form">
       <div class="form-title" data-lang="pt">Envie uma mensagem</div>
       <div class="form-title" data-lang="en">Send a message</div>
-      <div class="form-row">
+      <div class="form-grid">
         <div class="form-group">
-          <label data-lang="pt">Nome</label>
-          <label data-lang="en">Name</label>
+          <label data-lang="pt">Nome</label><label data-lang="en">Name</label>
           <input type="text" placeholder="João Silva">
         </div>
         <div class="form-group">
-          <label data-lang="pt">Empresa</label>
-          <label data-lang="en">Company</label>
+          <label data-lang="pt">Empresa</label><label data-lang="en">Company</label>
           <input type="text" placeholder="Empresa Ltda.">
         </div>
+        <div class="form-group full">
+          <label>E-mail</label>
+          <input type="email" placeholder="joao@empresa.com.br">
+        </div>
+        <div class="form-group full">
+          <label data-lang="pt">Assunto</label><label data-lang="en">Subject</label>
+          <select>
+            <option data-lang="pt">Despacho Aduaneiro</option>
+            <option data-lang="en">Customs Clearance</option>
+            <option data-lang="pt">Assessoria Aduaneira</option>
+            <option data-lang="en">Customs Advisory</option>
+            <option data-lang="pt">Operações Atípicas / Drawback</option>
+            <option data-lang="en">Special Operations / Drawback</option>
+            <option data-lang="pt">Prospecção no Exterior</option>
+            <option data-lang="en">International Business Development</option>
+            <option data-lang="pt">Siscoserv</option>
+            <option data-lang="en">Siscoserv</option>
+            <option data-lang="pt">Outro assunto</option>
+            <option data-lang="en">Other</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label data-lang="pt">Mensagem</label><label data-lang="en">Message</label>
+          <textarea data-lang="pt" placeholder="Como podemos ajudar?"></textarea>
+          <textarea data-lang="en" placeholder="How can we help?"></textarea>
+        </div>
+        <div class="form-group full">
+          <button class="form-submit" data-lang="pt">Enviar mensagem</button>
+          <button class="form-submit" data-lang="en">Send message</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label>E-mail</label>
-        <input type="email" placeholder="joao@empresa.com.br">
-      </div>
-      <div class="form-group">
-        <label data-lang="pt">Assunto</label>
-        <label data-lang="en">Subject</label>
-        <select>
-          <option data-lang="pt">Despacho Aduaneiro</option>
-          <option data-lang="en">Customs Clearance</option>
-          <option data-lang="pt">Consultoria de Importação</option>
-          <option data-lang="en">Import Consulting</option>
-          <option data-lang="pt">Consultoria de Exportação</option>
-          <option data-lang="en">Export Consulting</option>
-          <option data-lang="pt">Drawback / Benefícios Fiscais</option>
-          <option data-lang="en">Drawback / Tax Benefits</option>
-          <option data-lang="pt">Outro assunto</option>
-          <option data-lang="en">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label data-lang="pt">Mensagem</label>
-        <label data-lang="en">Message</label>
-        <textarea data-lang="pt" placeholder="Descreva sua necessidade…"></textarea>
-        <textarea data-lang="en" placeholder="Describe your need…"></textarea>
-      </div>
-      <button class="form-submit" data-lang="pt">Enviar mensagem</button>
-      <button class="form-submit" data-lang="en">Send message</button>
     </div>
   </div>
 </section>
@@ -850,7 +622,7 @@
       btn.classList.toggle('active', (i === 0 && lang === 'pt') || (i === 1 && lang === 'en'));
     });
   }
-  // default
+
   setLang('pt');
 </script>
 </body>
